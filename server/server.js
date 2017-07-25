@@ -1,6 +1,7 @@
 "use strict";
 
 const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+log.level = 'debug'; //set the level of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
 
 if (process.env.NODE_ENV === "production")
   require("newrelic");
@@ -19,9 +20,6 @@ const app = express();
 RoutesConfig.init(app);
 DBConfig.init();
 Routes.init(app, express.Router());
-
-console.log('run here');
-log.debug('run here');
 
 http.createServer(app)
   .listen(PORT, () => {
