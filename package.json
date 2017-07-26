@@ -86,8 +86,5 @@
   "bugs": {
     "url": "https://github.com/JiangSiwei/simei/issues"
   },
-  "homepage": "https://github.com/JiangSiwei/simei",
-  "engines": {
-    "node": "stable"
-  }
+  "homepage": "https://github.com/JiangSiwei/simei"
 }
