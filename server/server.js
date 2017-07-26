@@ -33,8 +33,6 @@ const Routes = require("./routes/index");
 
 const app = express();
 
-logger.debug('run here in server.js-dog')
-
 RoutesConfig.init(app);
 DBConfig.init();
 Routes.init(app, express.Router());

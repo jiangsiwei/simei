@@ -16,7 +16,15 @@ module.exports = class PayeeRoutes {
       .patch(PayeeController.update);
 
     router
+      .route("/api/payeeMultiRemove")
+      .post(PayeeController.multiRemove)
+
+    router
       .route('/api/payeeUpsert')
       .post(PayeeController.upsert);
+
+    router
+      .route("/api/payeeCount")
+      .get(PayeeController.count);
   }
 }

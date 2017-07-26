@@ -33,7 +33,7 @@ module.exports = class Record {
     if (_.get(record, '_id', null)) {
       delete record._id;
     }
-    if (_.get(record, '__v', null)) {
+    if (_.get(record, '__v', null) != null) {
       delete record.__v;
     }
   }

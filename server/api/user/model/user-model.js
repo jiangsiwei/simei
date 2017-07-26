@@ -111,7 +111,6 @@ UserSchema.methods = {
    * @api public
    */
   authenticate: function(plainText) {
-    logger.debug('plainText = ', plainText)
     return this.encryptPassword(plainText) === this.hashedPassword;
   },
 

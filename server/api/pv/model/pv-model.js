@@ -9,15 +9,6 @@ const _pvSchema = {
     required: true,
     trim: true
   },
-  payee: {
-    type: _schema.ObjectId,
-    ref: 'Payee'
-  },
-  account: String,
-  documentNo: String,
-  particulars: String,
-  amount: [Number],
-  total: Number,
   pvId: {
     type: String,
     required: true,
@@ -28,8 +19,18 @@ const _pvSchema = {
     required: true,
     trim: true
   },
+  payee: {
+    type: _schema.ObjectId,
+    ref: 'Payee'
+  },
+  account: String,
+  documentNo: String,
+  particulars: String,
+  amount: [Number],
+  total: Number,
+
   amountWord: String,
-  Date: {
+  date: {
     type: Date,
     default: Date.now
   },

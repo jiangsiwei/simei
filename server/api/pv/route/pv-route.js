@@ -16,7 +16,15 @@ module.exports = class PvRoutes {
       .patch(PvController.update);
 
     router
+      .route("/api/pvMultiRemove")
+      .post(PvController.multiRemove)
+
+    router
       .route('/api/pvUpsert')
       .post(PvController.upsert);
+
+    router
+      .route("/api/pvCount")
+      .get(PvController.count);
   }
 }
