@@ -1,7 +1,23 @@
 "use strict";
 
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
-log.level = 'debug'; //set the level of 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
+const log4js = require('log4js');
+log4js.configure({
+  appenders: {
+    cheese: {
+      type: 'console'
+    }
+  },
+  categories: {
+    default: {
+      appenders: ['cheese'],
+      level: 'debug'
+    }
+  }
+});
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+
+// const Logger = require('./components/utils/logger');
+// const logger = new Logger(__filename.slice(__dirname.length + 1)).getLogger();
 
 if (process.env.NODE_ENV === "production")
   require("newrelic");
@@ -16,6 +32,8 @@ const DBConfig = require("./config/db.conf");
 const Routes = require("./routes/index");
 
 const app = express();
+
+logger.debug('run here in server.js-dog')
 
 RoutesConfig.init(app);
 DBConfig.init();

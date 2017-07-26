@@ -2,7 +2,7 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 
 exports.setup = function(User, config) {
   passport.use(new LocalStrategy({

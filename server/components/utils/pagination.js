@@ -1,7 +1,7 @@
 "use strict";
 
 const _ = require('lodash');
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 
 module.exports = class Pagination {
   static search(data, req) {

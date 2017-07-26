@@ -1,6 +1,6 @@
 "use strict";
 
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const mongoose = require("mongoose");
 const crypto = require('crypto');
 const _schema = mongoose.Schema;
@@ -111,7 +111,7 @@ UserSchema.methods = {
    * @api public
    */
   authenticate: function(plainText) {
-    log.debug('plainText = ', plainText)
+    logger.debug('plainText = ', plainText)
     return this.encryptPassword(plainText) === this.hashedPassword;
   },
 

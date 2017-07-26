@@ -1,6 +1,6 @@
 "use strict";
 
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const _ = require("lodash");
 const async = require('async');
 const Promise = require("bluebird");
@@ -80,10 +80,10 @@ module.exports = class Opeator {
             delete data._id;
           }
 
-          // log.debug('0', found);
+          // logger.debug('0', found);
           // var _updated = _.merge(found, data);
           var _updated = _.assign(found, data);
-          // log.debug('1', found);
+          // logger.debug('1', found);
           _updated.save(function(err, saved) {
             err ? reject(err) : resolve(saved);
           });

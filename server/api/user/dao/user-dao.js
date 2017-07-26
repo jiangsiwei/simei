@@ -1,7 +1,7 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const _ = require('lodash');
 const Promise = require("bluebird");
 const userSchema = require("../model/user-model.js");
@@ -94,7 +94,6 @@ userSchema.statics.removeById = (id) => {
     }
 
     User.findByIdAndRemove(id).exec((err, deleted) => {
-      log.debug('0', err, deleted);
       err
         ?
         reject(err) :

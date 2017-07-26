@@ -1,14 +1,14 @@
 "use strict";
 
 const _ = require('lodash');
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const moment = require('moment');
 
 module.exports = class Time {
   constructor() {
-    log.debug('1 constructor');
+    logger.debug('1 constructor');
     this.startTime = this.getNow();
-    log.debug('3 startTime = ', this.startTime);
+    logger.debug('3 startTime = ', this.startTime);
   }
 
   getNow() {

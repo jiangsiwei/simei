@@ -1,7 +1,7 @@
 "use strict";
 
 const _ = require('lodash');
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 
 module.exports = class Record {
   static findById(database, val) {
@@ -22,7 +22,7 @@ module.exports = class Record {
     }
 
     // if(_.isNil(record)){
-    //   log.debug('nil for val', database,val);
+    //   logger.debug('nil for val', database,val);
     // }
 
     return record;

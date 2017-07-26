@@ -1,6 +1,6 @@
 "use strict";
 
-const log = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const _ = require("lodash");
 //the constant of module
 const moduleConst = require('../../constants/module.js');
@@ -11,6 +11,16 @@ const populateUser = {
   select: ''
 };
 
+const populatePv = {
+  path: 'payee',
+  select: ''
+};
+
+const populateReceipt = {
+  path: 'payee',
+  select: ''
+};
+
 module.exports = class FindPopulate {
   constructor() {}
 
@@ -18,6 +28,10 @@ module.exports = class FindPopulate {
     let ret = "";
     if (_.eq(name, moduleConst.user)) {
       ret = populateUser;
+    } else if (_.eq(name, moduleConst.pv)) {
+      ret = populatePv;
+    } else if (_.eq(name, moduleConst.receipt)) {
+      ret = populateReceipt;
     }
 
     return ret;
