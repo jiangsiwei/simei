@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 const mongoose = require("mongoose");
 
-const _payeeSchema = {
+const _personSchema = {
   id: {
     type: String,
     required: true,
@@ -28,4 +28,4 @@ const _payeeSchema = {
   }
 }
 
-module.exports = mongoose.Schema(_payeeSchema);
+module.exports = mongoose.Schema(_personSchema);

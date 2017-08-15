@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const ReceiptController = require("../controller/receipt-controller");
 
@@ -18,5 +18,13 @@ module.exports = class ReceiptRoutes {
     router
       .route('/api/receiptUpsert')
       .post(ReceiptController.upsert);
+
+    router
+      .route("/api/receiptMultiRemove")
+      .post(ReceiptController.multiRemove)
+
+    router
+      .route("/api/receiptCount")
+      .get(ReceiptController.count);
   }
 }

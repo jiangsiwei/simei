@@ -1,34 +1,48 @@
-"use strict";
+'use strict';
 
 const _ = require('lodash');
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const moment = require('moment');
 
 module.exports = class Pagination {
   static search(data, req) {
-    let {
+    const {
       query
     } = req;
-    let {
+    const {
       field,
-      keyword
+      keyword,
+      rangePickerField,
+      rangePickerKeyword
     } = query;
 
 
-    let newData = data;
+    let ret = data;
     if (!_.isNil(field) && !_.isNil(keyword)) {
-      newData = _.filter(data, (t) => {
+      ret = _.filter(ret, (t) => {
         return _.includes(_.get(t, field), keyword);
       });
     }
 
-    return newData
+    //for search plus, date
+    if (!_.isNil(rangePickerField) && !_.isNil(rangePickerKeyword)) {
+      const from = rangePickerKeyword[0]
+      const to = rangePickerKeyword[1]
+      ret = _.filter(ret, (t) => {
+        const val = new moment(_.get(t, rangePickerField)).format('YYYY-MM-DD')
+        return val >= from && val <= to;
+      });
+    }
+
+
+    return ret
   }
 
   static slice(data, req) {
-    let {
+    const {
       query
     } = req;
-    let {
+    const {
       pageSize,
       page
     } = query

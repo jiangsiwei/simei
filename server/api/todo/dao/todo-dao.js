@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 let mongoose = require("mongoose");
 const todoSchema = require("../model/todo-model");

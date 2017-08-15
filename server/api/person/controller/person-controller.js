@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
-const PayeeDAO = require("../dao/payee-dao");
+const PersonDAO = require("../dao/person-dao");
 const moduleConst = require("../../../constants/module.js");
 const Operator = require("../../../components/operator/operator.js");
 const Pagination = require("../../../components/utils/pagination.js");
-const Payee = require("../../../components/module/payee.js");
+const Person = require("../../../components/module/person.js");
 const _ = require("lodash");
 
 const postHandle = (data) => {
   const single = (data) => {
-    const val = new Payee(data);
+    const val = new Person(data);
     val.findId();
     return val.getData();
   }
@@ -24,26 +24,29 @@ const postHandle = (data) => {
   }
 }
 
-module.exports = class PayeeController {
+module.exports = class PersonController {
   static getAll(req, res) {
     Operator
-      .getAll(moduleConst.payee, moduleConst.payee)
-      .then(data => res.status(200).json(Pagination.handle(data, req)))
+      .getAll(moduleConst.person, moduleConst.person)
+      .then((data) => {
+        const ret = Pagination.handle(data, req)
+        res.status(200).json(_.sortBy(ret, t=> t.id))
+      })
       .catch(err => res.status(400).json(err));
   }
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.payee, null)
+      .getAll(moduleConst.person, null)
       .then(data => res.status(200).json({
-          total: Pagination.getCount(data, req)
+        total: Pagination.getCount(data, req)
       }))
       .catch(err => res.status(400).json(err));
   }
 
   static getById(req, res) {
     Operator
-      .getById(moduleConst.payee, moduleConst.payee, req.params.id)
+      .getById(moduleConst.person, moduleConst.person, req.params.id)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -53,7 +56,7 @@ module.exports = class PayeeController {
     _data = postHandle(_data);
 
     Operator
-      .createNew(moduleConst.payee, _data)
+      .createNew(moduleConst.person, _data)
       .then(data => res.status(201).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -62,7 +65,7 @@ module.exports = class PayeeController {
     let _id = req.params.id;
 
     Operator
-      .deleteById(moduleConst.payee, _id)
+      .deleteById(moduleConst.person, _id)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -71,7 +74,7 @@ module.exports = class PayeeController {
     let _data = req.body; //include "_id" and "id"
 
     Operator
-      .multiRemove(moduleConst.payee, _data)
+      .multiRemove(moduleConst.person, _data)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -82,7 +85,7 @@ module.exports = class PayeeController {
     _data = postHandle(_data);
 
     Operator
-      .update(moduleConst.payee, _id, _data)
+      .update(moduleConst.person, _id, _data)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -92,7 +95,7 @@ module.exports = class PayeeController {
     _data = postHandle(_data);
 
     Operator
-      .upsert(moduleConst.payee, _data)
+      .upsert(moduleConst.person, _data)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }

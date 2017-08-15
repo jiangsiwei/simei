@@ -1,11 +1,12 @@
-"use strict";
+'use strict';
 
 const TodoRoutes = require("../api/todo/route/todo-route");
 const MenuRoutes = require("../api/menu/route/menu-route");
 const PermissionRoutes = require("../api/permission/route/permission-route");
 const UserRoutes = require("../api/user/route/user-route");
-const PayeeRoutes = require("../api/payee/route/payee-route");
+const PersonRoutes = require("../api/person/route/person-route");
 const PvRoutes = require("../api/pv/route/pv-route");
+const GiroRoutes = require("../api/giro/route/giro-route");
 const ReceiptRoutes = require("../api/receipt/route/receipt-route");
 
 module.exports = class Routes {
@@ -18,8 +19,9 @@ module.exports = class Routes {
     UserRoutes.init(router);
 
     //for main Routes
-    PayeeRoutes.init(router);
+    PersonRoutes.init(router);
     PvRoutes.init(router);
+    GiroRoutes.init(router);
     ReceiptRoutes.init(router);
 
     app.use("/", router);

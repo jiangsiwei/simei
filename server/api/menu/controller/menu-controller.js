@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const moduleConst = require("../../../constants/module.js");
 const Operator = require("../../../components/operator/operator.js");

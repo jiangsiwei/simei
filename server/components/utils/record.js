@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const _ = require('lodash');
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));

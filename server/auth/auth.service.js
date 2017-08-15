@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const mongoose = require('mongoose');
@@ -21,13 +21,9 @@ function isAuthenticated() {
   return compose()
     // Validate jwt
     .use(function(req, res, next) {
-      //reaad cookie
-      const tmp = req.headers.cookie || ''
-      const cookie = qs.parse(tmp.replace(/\s/g, ''), {
-        delimiter: ';'
-      })
-      if (cookie && cookie.hasOwnProperty('token')) {
-        req.headers.authorization = 'Bearer ' + String(cookie.token);
+      // allow access_token to be passed through query parameter as well
+      if (req.query && req.query.hasOwnProperty('access_token')) {
+        req.headers.authorization = 'Bearer ' + req.query.access_token;
       }
       validateJwt(req, res, next);
     })

@@ -1,5 +1,6 @@
-"use strict";
+'use strict';
 
+const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 var express = require('express');
 var passport = require('passport');
 var auth = require('../auth.service');
@@ -18,12 +19,6 @@ router.post('/login', function(req, res, next) {
 
     var token = auth.signToken(user._id, user.role);
 
-    //set the cookie
-    res.cookie('token', token, {
-      maxAge: 900000, // 900000 = 15 * 60 * 1000
-      httpOnly: true,
-    })
-
     res.json({
       token: token
     });
@@ -31,7 +26,6 @@ router.post('/login', function(req, res, next) {
 });
 
 router.delete('/logout', function(req, res, next) {
-  res.clearCookie('token');
   res.status(200).end();
 });
 

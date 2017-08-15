@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const mongoose = require("mongoose");
 const _schema = mongoose.Schema;
@@ -9,15 +9,15 @@ const _receiptSchema = {
     required: true,
     trim: true
   },
-  payee: {
+  payer: {
     type: _schema.ObjectId,
-    ref: 'Payee'
+    ref: 'Person'
   },
   amount: Number,
   ig: {
     type: String,
     default: 'Karaoke', // if you want to set as default value
-    enum: ['Karaoke', 'Ballon', 'SCEC lunch', 'BriskWalk']
+    enum: ['Karaoke', 'Ballon', 'SCEC Lunch', 'Brisk Walk', 'Apple Tree', 'Others']
   },
   ticketFrom: String,
   ticketTo: String,

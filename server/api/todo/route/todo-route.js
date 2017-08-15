@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const TodoController = require("../controller/todo-controller");
 

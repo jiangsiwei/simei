@@ -3,18 +3,8 @@
 const mongoose = require("mongoose");
 const _schema = mongoose.Schema;
 
-const _pvSchema = {
-  id: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  pvId: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  chequeId: {
+const _giroSchema = {
+  id: { //invoice id
     type: String,
     required: true,
     trim: true
@@ -23,13 +13,9 @@ const _pvSchema = {
     type: _schema.ObjectId,
     ref: 'Person'
   },
-  account: String,
-  documentNo: String,
   particulars: String,
-  amount: Number,
   total: Number,
   createdBy: String,
-  amountWord: String,
   date: {
     type: Date,
     default: Date.now
@@ -40,4 +26,4 @@ const _pvSchema = {
   }
 }
 
-module.exports = mongoose.Schema(_pvSchema);
+module.exports = mongoose.Schema(_giroSchema);

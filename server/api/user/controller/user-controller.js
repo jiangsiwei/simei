@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const UserDao = require('../dao/user-dao.js');
 const Pagination = require("../../../components/utils/pagination.js");

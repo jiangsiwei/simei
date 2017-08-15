@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 let mongoose = require("mongoose");
 const receiptSchema = require("../model/receipt-model");

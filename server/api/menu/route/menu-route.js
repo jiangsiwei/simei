@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const MenuController = require("../controller/menu-controller");
 

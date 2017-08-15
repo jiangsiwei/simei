@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const _ = require("lodash");
@@ -16,8 +16,13 @@ const populatePv = {
   select: ''
 };
 
-const populateReceipt = {
+const populateGiro = {
   path: 'payee',
+  select: ''
+};
+
+const populateReceipt = {
+  path: 'payer',
   select: ''
 };
 
@@ -30,6 +35,8 @@ module.exports = class FindPopulate {
       ret = populateUser;
     } else if (_.eq(name, moduleConst.pv)) {
       ret = populatePv;
+    } else if (_.eq(name, moduleConst.giro)) {
+      ret = populateGiro;
     } else if (_.eq(name, moduleConst.receipt)) {
       ret = populateReceipt;
     }

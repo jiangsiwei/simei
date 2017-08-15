@@ -1,14 +1,13 @@
-"use strict";
+'use strict';
 
 const _ = require('lodash');
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const moment = require('moment');
+const dateFormat = 'DD/MM/YYYY';
 
 module.exports = class Time {
   constructor() {
-    logger.debug('1 constructor');
     this.startTime = this.getNow();
-    logger.debug('3 startTime = ', this.startTime);
   }
 
   getNow() {
@@ -31,5 +30,9 @@ module.exports = class Time {
   getDurationAsSeconds() {
     var endTime = this.getNow();
     return moment.duration(endTime.diff(this.startTime)).asSeconds();
+  }
+
+  format(data) {
+    return moment(data).format(dateFormat);
   }
 }

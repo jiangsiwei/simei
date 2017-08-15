@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const UserController = require("../controller/user-controller");
 const auth = require('../../../auth/auth.service');

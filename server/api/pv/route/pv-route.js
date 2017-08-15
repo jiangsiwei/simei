@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const PvController = require("../controller/pv-controller");
 
@@ -26,5 +26,13 @@ module.exports = class PvRoutes {
     router
       .route("/api/pvCount")
       .get(PvController.count);
+
+    router
+      .route("/api/pvExport/:id")
+      .get(PvController.exportSheet);
+
+    router
+      .route("/api/pvExport")
+      .get(PvController.exportSheets);
   }
 }
