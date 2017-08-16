@@ -174,4 +174,60 @@ module.exports = class Opeator {
         });
     });
   }
+
+  static monthlySum(daoName) {
+    return new Promise((resolve, reject) => {
+      let _query = {};
+
+      FindModule.find(daoName).aggregate([{
+          "$project": {
+            "total": 1,
+            "month": {
+              "$month": "$date"
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": "$month",
+            "total": {
+              "$sum": "$total"
+            }
+          }
+        }
+      ]).exec((err, data) => {
+        err ? reject(err) : resolve({
+          total: data
+        });
+      });
+    });
+  }
+
+  static yearlySum(daoName) {
+    return new Promise((resolve, reject) => {
+      let _query = {};
+
+      FindModule.find(daoName).aggregate([{
+          "$project": {
+            "total": 1,
+            "year": {
+              "$year": "$date"
+            }
+          }
+        },
+        {
+          "$group": {
+            "_id": "$year",
+            "total": {
+              "$sum": "$total"
+            }
+          }
+        }
+      ]).exec((err, data) => {
+        err ? reject(err) : resolve({
+          total: data
+        });
+      });
+    });
+  }
 }

@@ -13,7 +13,7 @@ const _receiptSchema = {
     type: _schema.ObjectId,
     ref: 'Person'
   },
-  amount: Number,
+  total: Number,
   ig: {
     type: String,
     default: 'Karaoke', // if you want to set as default value
@@ -22,7 +22,7 @@ const _receiptSchema = {
   ticketFrom: String,
   ticketTo: String,
   note: String,
-  Date: {
+  date: {
     type: Date,
     default: Date.now
   }

@@ -26,5 +26,13 @@ module.exports = class GiroRoutes {
     router
       .route("/api/giroCount")
       .get(GiroController.count);
+
+    router
+      .route("/api/giroMonthlySum")
+      .get(GiroController.monthlySum);
+
+    router
+      .route("/api/giroYearlySum")
+      .get(GiroController.yearlySum);
   }
 }

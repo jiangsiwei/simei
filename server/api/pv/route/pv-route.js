@@ -34,5 +34,13 @@ module.exports = class PvRoutes {
     router
       .route("/api/pvExport")
       .get(PvController.exportSheets);
+
+    router
+      .route("/api/pvMonthlySum")
+      .get(PvController.monthlySum);
+
+    router
+      .route("/api/pvYearlySum")
+      .get(PvController.yearlySum);
   }
 }

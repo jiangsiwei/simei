@@ -26,5 +26,13 @@ module.exports = class ReceiptRoutes {
     router
       .route("/api/receiptCount")
       .get(ReceiptController.count);
+
+    router
+      .route("/api/receiptMonthlySum")
+      .get(ReceiptController.monthlySum);
+
+    router
+      .route("/api/receiptYearlySum")
+      .get(ReceiptController.yearlySum);
   }
 }

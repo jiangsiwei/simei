@@ -76,4 +76,18 @@ module.exports = class ReceiptController {
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
+
+  static monthlySum(req, res) {
+    Operator
+      .monthlySum(moduleConst.receipt, moduleConst.receipt)
+      .then(data => res.status(200).json(data))
+      .catch(err => res.status(400).json(err));
+  }
+
+  static yearlySum(req, res) {
+    Operator
+      .yearlySum(moduleConst.receipt, moduleConst.receipt)
+      .then(data => res.status(200).json(data))
+      .catch(err => res.status(400).json(err));
+  }
 }

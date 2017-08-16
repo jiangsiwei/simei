@@ -128,4 +128,18 @@ module.exports = class PvController {
       })
       .catch(err => res.status(400).json(err));
   }
+
+  static monthlySum(req, res) {
+    Operator
+      .monthlySum(moduleConst.pv, moduleConst.pv)
+      .then(data => res.status(200).json(data))
+      .catch(err => res.status(400).json(err));
+  }
+
+  static yearlySum(req, res) {
+    Operator
+      .yearlySum(moduleConst.pv, moduleConst.pv)
+      .then(data => res.status(200).json(data))
+      .catch(err => res.status(400).json(err));
+  }
 }
