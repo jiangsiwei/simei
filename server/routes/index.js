@@ -8,6 +8,11 @@ const PersonRoutes = require("../api/person/route/person-route");
 const PvRoutes = require("../api/pv/route/pv-route");
 const GiroRoutes = require("../api/giro/route/giro-route");
 const ReceiptRoutes = require("../api/receipt/route/receipt-route");
+const DashboardRoutes = require("../api/dashboard/route/dashboard-route");
+
+//for merit system
+const MemberRoutes = require("../api/member/route/member-route");
+const EventRoutes = require("../api/event/route/event-route");
 
 module.exports = class Routes {
   static init(app, router) {
@@ -23,6 +28,11 @@ module.exports = class Routes {
     PvRoutes.init(router);
     GiroRoutes.init(router);
     ReceiptRoutes.init(router);
+    DashboardRoutes.init(router);
+
+    //for merit system
+    MemberRoutes.init(router)
+    EventRoutes.init(router)
 
     app.use("/", router);
   }

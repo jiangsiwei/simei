@@ -38,25 +38,9 @@ module.exports = class Pagination {
     return ret
   }
 
-  static slice(data, req) {
-    const {
-      query
-    } = req;
-    const {
-      pageSize,
-      page
-    } = query
-
-    if (!_.isNil(pageSize) && !_.isNil(page)) {
-      return data.slice((page - 1) * pageSize, page * pageSize);
-    } else {
-      return data;
-    }
-  }
-
   static handle(data, req) {
     const newData = this.search(data, req);
-    return this.slice(newData, req);
+    return newData
   }
 
   static getCount(data, req) {

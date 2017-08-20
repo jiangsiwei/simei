@@ -9,18 +9,27 @@ const _ = require("lodash");
 
 module.exports = class ReceiptController {
   static getAll(req, res) {
+    //find the parameters
+    const {
+      query
+    } = req
+    const paras = {
+      page: query.page,
+      pageSize: query.pageSize,
+      sortField: query.sortField,
+      sortOrder: query.sortOrder,
+    }
+
     Operator
-      .getAll(moduleConst.receipt, moduleConst.receipt)
+      .getAll(moduleConst.receipt, moduleConst.receipt, paras)
       .then(data => res.status(200).json(Pagination.handle(data, req)))
       .catch(err => res.status(400).json(err));
   }
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.receipt, null)
-      .then(data => res.status(200).json({
-          total: Pagination.getCount(data, req)
-      }))
+      .count(moduleConst.receipt, null)
+      .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
 

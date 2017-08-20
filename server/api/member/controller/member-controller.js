@@ -1,14 +1,30 @@
 'use strict';
 
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
+const MemberDAO = require("../dao/member-dao");
 const moduleConst = require("../../../constants/module.js");
 const Operator = require("../../../components/operator/operator.js");
 const Pagination = require("../../../components/utils/pagination.js");
-const PaymentVoucher = require("../../../components/module/paymentVoucher.js");
-const ExportPV = require("../../../components/io/exportPV.js");
+const Member = require("../../../components/module/member.js");
 const _ = require("lodash");
 
-module.exports = class GiroController {
+const postHandle = (data) => {
+  const single = (data) => {
+    const val = new Member(data);
+    val.findId();
+    return val.getData();
+  }
+
+  if (_.isArray(data)) {
+    let ret = [];
+    _.forEach(data, val => ret.push(single(val)));
+    return ret;
+  } else {
+    return single(data)
+  }
+}
+
+module.exports = class MemberController {
   static getAll(req, res) {
     //find the parameters
     const {
@@ -22,30 +38,34 @@ module.exports = class GiroController {
     }
 
     Operator
-      .getAll(moduleConst.giro, moduleConst.giro, paras)
-      .then(data => res.status(200).json(Pagination.handle(data, req)))
+      .getAll(moduleConst.member, moduleConst.member, paras)
+      .then((data) => {
+        const ret = Pagination.handle(data, req)
+        res.status(200).json(_.sortBy(ret, t => t.id))
+      })
       .catch(err => res.status(400).json(err));
   }
 
   static count(req, res) {
     Operator
-      .count(moduleConst.giro, null)
+      .count(moduleConst.member, null)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
 
   static getById(req, res) {
     Operator
-      .getById(moduleConst.giro, moduleConst.giro, req.params.id)
+      .getById(moduleConst.member, moduleConst.member, req.params.id)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
 
   static createNew(req, res) {
     let _data = req.body;
+    _data = postHandle(_data);
 
     Operator
-      .createNew(moduleConst.giro, _data)
+      .createNew(moduleConst.member, _data)
       .then(data => res.status(201).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -54,7 +74,7 @@ module.exports = class GiroController {
     let _id = req.params.id;
 
     Operator
-      .deleteById(moduleConst.giro, _id)
+      .deleteById(moduleConst.member, _id)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -63,7 +83,7 @@ module.exports = class GiroController {
     let _data = req.body; //include "_id" and "id"
 
     Operator
-      .multiRemove(moduleConst.giro, _data)
+      .multiRemove(moduleConst.member, _data)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
@@ -71,32 +91,20 @@ module.exports = class GiroController {
   static update(req, res) {
     let _id = req.params.id;
     let _data = req.body;
+    _data = postHandle(_data);
 
     Operator
-      .update(moduleConst.giro, _id, _data)
+      .update(moduleConst.member, _id, _data)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
 
   static upsert(req, res) {
     let _data = req.body;
+    _data = postHandle(_data);
 
     Operator
-      .upsert(moduleConst.giro, _data)
-      .then(data => res.status(200).json(data))
-      .catch(err => res.status(400).json(err));
-  }
-
-  static monthlySum(req, res) {
-    Operator
-      .monthlySum(moduleConst.giro, moduleConst.giro)
-      .then(data => res.status(200).json(data))
-      .catch(err => res.status(400).json(err));
-  }
-
-  static yearlySum(req, res) {
-    Operator
-      .yearlySum(moduleConst.giro, moduleConst.giro)
+      .upsert(moduleConst.member, _data)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }

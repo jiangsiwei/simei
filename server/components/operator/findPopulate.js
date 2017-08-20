@@ -26,6 +26,17 @@ const populateReceipt = {
   select: ''
 };
 
+const populateEvent = [{
+  path: 'chairman',
+  select: ''
+}, {
+  path: 'committee',
+  select: ''
+}, {
+  path: 'volunteer',
+  select: ''
+}];
+
 module.exports = class FindPopulate {
   constructor() {}
 
@@ -39,6 +50,8 @@ module.exports = class FindPopulate {
       ret = populateGiro;
     } else if (_.eq(name, moduleConst.receipt)) {
       ret = populateReceipt;
+    } else if (_.eq(name, moduleConst.event)) {
+      ret = populateEvent;
     }
 
     return ret;

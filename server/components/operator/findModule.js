@@ -11,6 +11,10 @@ const PvDAO = require('../../api/pv/dao/pv-dao.js');
 const GiroDAO = require('../../api/giro/dao/giro-dao.js');
 const ReceiptDAO = require('../../api/receipt/dao/receipt-dao.js');
 
+//for merit system
+const MemberDAO = require('../../api/member/dao/member-dao.js');
+const EventDAO = require('../../api/event/dao/event-dao.js');
+
 //for user, permission, menu
 const MenuDAO = require('../../api/menu/dao/menu-dao.js');
 const PermissionDAO = require('../../api/permission/dao/permission-dao.js');
@@ -36,6 +40,10 @@ module.exports = class FindModule {
       ret = GiroDAO;
     } else if (_.eq(name, moduleConst.receipt)) {
       ret = ReceiptDAO;
+    } else if (_.eq(name, moduleConst.member)) {
+      ret = MemberDAO;
+    }else if (_.eq(name, moduleConst.event)) {
+      ret = EventDAO;
     }
 
     return ret;

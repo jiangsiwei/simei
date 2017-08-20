@@ -5,8 +5,19 @@ const Operator = require("../../../components/operator/operator.js");
 
 module.exports = class menuController {
   static getAll(req, res) {
+    //find the parameters
+    const {
+      query
+    } = req
+    const paras = {
+      page: query.page,
+      pageSize: query.pageSize,
+      sortField: query.sortField,
+      sortOrder: query.sortOrder,
+    }
+
     Operator
-      .getAll(moduleConst.menu, moduleConst.menu)
+      .getAll(moduleConst.menu, moduleConst.menu, paras)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }

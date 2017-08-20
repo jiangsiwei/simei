@@ -11,12 +11,28 @@ const FindPopulate = require('./findPopulate.js');
 const Record = require('../utils/record.js');
 
 module.exports = class Opeator {
-  static getAll(daoName, populateName, fieldList = null) {
+  static getAll(daoName, populateName = null, paras = null) {
+    logger.debug('paras: ', paras)
+    const {
+      page,
+      pageSize,
+      sortField,
+      sortOrder,
+      fieldList
+    } = paras
+
+    var sortParas = {}
+    _.set(sortParas, sortField, sortOrder == 'descend' ? -1 : 1)
+    logger.debug('sortParas: ', sortParas)
+
     return new Promise((resolve, reject) => {
       let _query = {};
 
       FindModule.find(daoName).find(_query, fieldList)
         .populate(FindPopulate.find(populateName))
+        .sort(sortParas)
+        .skip((page - 1) * (pageSize))
+        .limit(1 * pageSize)
         .exec((err, data) => {
           err ? reject(err) : resolve(data);
         });

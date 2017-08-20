@@ -13,8 +13,6 @@ module.exports = class Todo {
     }
   }
 
-
-
   getMessage() {
     return this.data.todoMessage;
   }

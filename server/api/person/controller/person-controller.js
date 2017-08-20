@@ -26,21 +26,29 @@ const postHandle = (data) => {
 
 module.exports = class PersonController {
   static getAll(req, res) {
+    //find the parameters
+    const {
+      query
+    } = req
+    const paras = {
+      page: query.page,
+      pageSize: query.pageSize,
+      sortField: query.sortField,
+      sortOrder: query.sortOrder,
+    }
     Operator
-      .getAll(moduleConst.person, moduleConst.person)
+      .getAll(moduleConst.person, moduleConst.person, paras)
       .then((data) => {
         const ret = Pagination.handle(data, req)
-        res.status(200).json(_.sortBy(ret, t=> t.id))
+        res.status(200).json(_.sortBy(ret, t => t.id))
       })
       .catch(err => res.status(400).json(err));
   }
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.person, null)
-      .then(data => res.status(200).json({
-        total: Pagination.getCount(data, req)
-      }))
+      .count(moduleConst.person, null)
+      .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }
 
