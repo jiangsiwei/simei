@@ -30,7 +30,8 @@ module.exports = class ExportPV {
 
     const findFraction = (data) => {
       const frac = (data) => {
-        return 100 * _.round(_.subtract(data, _.floor(data)), 2);
+        var ret = 100 * _.round(_.subtract(data, _.floor(data)), 2)
+        return _.padStart(ret, 2, '0')
       }
       if (_.isArray(data)) {
         return _.map(data, val => frac(val));
