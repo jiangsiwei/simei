@@ -5,19 +5,8 @@ const Operator = require("../../../components/operator/operator.js");
 
 module.exports = class PermissionController {
   static getAll(req, res) {
-    //find the parameters
-    const {
-      query
-    } = req
-    const paras = {
-      page: query.page,
-      pageSize: query.pageSize,
-      sortField: query.sortField,
-      sortOrder: query.sortOrder,
-    }
-
     Operator
-      .getAll(moduleConst.permission, moduleConst.permission, paras)
+      .getAll(moduleConst.permission, moduleConst.permission)
       .then(data => res.status(200).json(data))
       .catch(err => res.status(400).json(err));
   }

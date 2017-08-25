@@ -10,27 +10,18 @@ const _ = require("lodash");
 
 module.exports = class GiroController {
   static getAll(req, res) {
-    //find the parameters
-    const {
-      query
-    } = req
-    const paras = {
-      page: query.page,
-      pageSize: query.pageSize,
-      sortField: query.sortField,
-      sortOrder: query.sortOrder,
-    }
-
     Operator
-      .getAll(moduleConst.giro, moduleConst.giro, paras)
+      .getAll(moduleConst.giro, moduleConst.giro)
       .then(data => res.status(200).json(Pagination.handle(data, req)))
       .catch(err => res.status(400).json(err));
   }
 
   static count(req, res) {
     Operator
-      .count(moduleConst.giro, null)
-      .then(data => res.status(200).json(data))
+      .getAll(moduleConst.giro, null)
+      .then(data => res.status(200).json({
+        total: Pagination.getCount(data, req)
+      }))
       .catch(err => res.status(400).json(err));
   }
 

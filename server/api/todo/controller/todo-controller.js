@@ -8,17 +8,6 @@ const SetterGetter = require("../../../components/utils/setterGetter.js");
 
 module.exports = class TodoController {
   static getAll(req, res) {
-    //find the parameters
-    const {
-      query
-    } = req
-    const paras = {
-      page: query.page,
-      pageSize: query.pageSize,
-      sortField: query.sortField,
-      sortOrder: query.sortOrder,
-    }
-
     Operator
       .getAll(moduleConst.todo, moduleConst.todo, paras)
       .then((data) => {

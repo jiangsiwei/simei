@@ -16,7 +16,6 @@ module.exports = class Pagination {
       rangePickerKeyword
     } = query;
 
-
     let ret = data;
     if (!_.isNil(field) && !_.isNil(keyword)) {
       ret = _.filter(ret, (t) => {
@@ -24,7 +23,7 @@ module.exports = class Pagination {
       });
     }
 
-    //for search plus, date
+    //for search plus, date range
     if (!_.isNil(rangePickerField) && !_.isNil(rangePickerKeyword)) {
       const from = rangePickerKeyword[0]
       const to = rangePickerKeyword[1]
@@ -38,9 +37,37 @@ module.exports = class Pagination {
     return ret
   }
 
+  static slice(data, req) {
+    const {
+      query
+    } = req;
+    const {
+      sortField,
+      sortOrder,
+      pageSize,
+      page
+    } = query
+
+    let ret = data
+    if (!_.isNil(sortField) && !_.isNil(sortOrder)) {
+      ret = _.sortBy(ret, (t) => {
+        return _.get(t, sortField);
+      });
+      if(sortOrder.toLowerCase() == 'descend'){
+        ret = _.reverse(ret)
+      }
+    }
+
+    if (!_.isNil(pageSize) && !_.isNil(page)) {
+      return ret.slice((page - 1) * pageSize, page * pageSize);
+    } else {
+      return ret;
+    }
+  }
+
   static handle(data, req) {
     const newData = this.search(data, req);
-    return newData
+    return this.slice(newData, req);
   }
 
   static getCount(data, req) {

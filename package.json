@@ -35,7 +35,7 @@
     "lodash": "^4.6.1",
     "log4js": "^2.3.0",
     "moment": "^2.18.1",
-    "mongoose": "^4.4.7",
+    "mongoose": "^4.11.8",
     "morgan": "^1.5.2",
     "newrelic": "^1.18.2",
     "nodemon": "^1.9.2",
