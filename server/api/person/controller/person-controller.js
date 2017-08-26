@@ -34,7 +34,7 @@ module.exports = class PersonController {
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.person, null)
+      .getAll(moduleConst.person, moduleConst.person)
       .then(data => res.status(200).json({
         total: Pagination.getCount(data, req)
       }))

@@ -18,7 +18,7 @@ module.exports = class GiroController {
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.giro, null)
+      .getAll(moduleConst.giro, moduleConst.giro)
       .then(data => res.status(200).json({
         total: Pagination.getCount(data, req)
       }))

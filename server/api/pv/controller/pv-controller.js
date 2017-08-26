@@ -36,7 +36,7 @@ module.exports = class PvController {
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.pv, null)
+      .getAll(moduleConst.pv, moduleConst.pv)
       .then(data => res.status(200).json({
         total: Pagination.getCount(data, req)
       }))

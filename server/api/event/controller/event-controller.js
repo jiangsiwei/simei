@@ -35,7 +35,7 @@ module.exports = class EventController {
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.event, null)
+      .getAll(moduleConst.event, moduleConst.event)
       .then(data => res.status(200).json({
         total: Pagination.getCount(data, req)
       }))

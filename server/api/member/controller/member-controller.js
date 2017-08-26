@@ -34,7 +34,7 @@ module.exports = class MemberController {
 
   static count(req, res) {
     Operator
-      .getAll(moduleConst.member, null)
+      .getAll(moduleConst.member, moduleConst.member)
       .then(data => res.status(200).json({
         total: Pagination.getCount(data, req)
       }))
