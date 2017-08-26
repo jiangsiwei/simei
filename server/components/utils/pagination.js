@@ -19,7 +19,7 @@ module.exports = class Pagination {
     let ret = data;
     if (!_.isNil(field) && !_.isNil(keyword)) {
       ret = _.filter(ret, (t) => {
-        return _.includes(_.get(t, field), keyword);
+        return _.includes(_.get(t, field).toLowerCase(), keyword.toLowerCase());
       });
     }
 

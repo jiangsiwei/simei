@@ -30,5 +30,9 @@ module.exports = class EventRoutes {
     router
       .route("/api/eventSummary")
       .get(EventController.summary);
+
+    router
+      .route("/api/eventSummaryCount")
+      .get(EventController.summaryCount);
   }
 }

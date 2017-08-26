@@ -104,7 +104,20 @@ module.exports = class EventController {
       .then((data) => {
         const merit = new Merit(data)
         const summary = merit.findSummary()
-        res.status(200).json(summary)
+        res.status(200).json(Pagination.handle(summary, req))
+      })
+      .catch(err => res.status(400).json(err));
+  }
+
+  static summaryCount(req, res) {
+    Operator
+      .getAll(moduleConst.event, moduleConst.event)
+      .then((data) => {
+        const merit = new Merit(data)
+        const summary = merit.findSummary()
+        res.status(200).json({
+          total: Pagination.getCount(summary, req)
+        })
       })
       .catch(err => res.status(400).json(err));
   }
