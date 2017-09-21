@@ -2,7 +2,7 @@
 
 const logger = require('log4js').getLogger(__filename.slice(__dirname.length + 1));
 const _ = require('lodash');
-const Event = require('../module/Event')
+const Event = require('../module/event.js')
 
 module.exports = class Merit {
   constructor(data) {
