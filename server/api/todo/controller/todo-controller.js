@@ -9,10 +9,10 @@ const SetterGetter = require("../../../components/utils/setterGetter.js");
 module.exports = class TodoController {
   static getAll(req, res) {
     Operator
-      .getAll(moduleConst.todo, moduleConst.todo, paras)
+      .getAll(moduleConst.todo, moduleConst.todo)
       .then((data) => {
-        const sg = new SetterGetter(['id', 'name', 'chairman', 'committee', 'volunteer'])
-        sg.generate()
+        // const sg = new SetterGetter(['id', 'name', 'chairman', 'committee', 'volunteer'])
+        // sg.generate()
         res.status(200).json(data)
       })
       .catch(err => res.status(400).json(err));

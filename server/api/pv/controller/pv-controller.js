@@ -118,7 +118,7 @@ module.exports = class PvController {
     Operator
       .getAll(moduleConst.pv, moduleConst.pv)
       .then((data) => {
-        const exportPV = new ExportPV(data);
+        const exportPV = new ExportPV(Pagination.handle(data, req))
         exportPV.getSheets((ret) => {
           res.writeHead(200, [
             ['Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']

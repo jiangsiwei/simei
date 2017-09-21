@@ -16,6 +16,11 @@ module.exports = class Pagination {
       rangePickerKeyword
     } = query;
 
+    logger.debug('0', field,
+    keyword,
+    rangePickerField,
+    rangePickerKeyword)
+
     let ret = data;
     if (!_.isNil(field) && !_.isNil(keyword)) {
       ret = _.filter(ret, (t) => {
