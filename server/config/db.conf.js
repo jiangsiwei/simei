@@ -9,7 +9,7 @@ module.exports = class DBConfig {
     const URL = (process.env.NODE_ENV === "production") ? process.env.MONGOHQ_URL : dbConst.localhost;
     // const URL = 'mongodb://jiangsiwei:simei123@ds011664.mlab.com:11664/simei'
 
-    console.log('DB URL = ', URL);
+    // console.log('DB URL = ', URL);
     mongoose.Promise = Promise;
     mongoose.connect(URL);
     //   mongoose.createConnection(URL);

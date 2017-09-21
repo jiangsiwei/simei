@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const express = require("express");
 const compression = require("compression");
 const zlib = require("zlib");
+const cors = require('cors');
 
 module.exports = class RouteConfig {
   static init(application) {
@@ -34,5 +35,8 @@ module.exports = class RouteConfig {
 
     //the middleware function, authenticate
     application.use('/api/auth', require('../auth/index'));
+
+    //add the cors
+    application.use(cors());
   }
 }

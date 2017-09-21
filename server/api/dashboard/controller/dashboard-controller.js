@@ -28,7 +28,7 @@ const mergeMonth = (dashboard, name, data) => {
       _.set(dashboard[idx], name, val.total)
     }
   })
-  logger.debug(dashboard)
+  // logger.debug(dashboard)
 }
 
 const pvMonthlySum = (dashboard, callback) => {
@@ -83,8 +83,8 @@ module.exports = class DashboardController {
       giroMonthlySum,
       receiptMonthlySum
     ], function(err, data) {
-      logger.debug('err', err);
-      logger.debug('data', data);
+      // logger.debug('err', err);
+      // logger.debug('data', data);
       err ? res.status(400).json(err) : res.status(200).json(data)
     });
 

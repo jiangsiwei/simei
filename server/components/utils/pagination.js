@@ -16,10 +16,7 @@ module.exports = class Pagination {
       rangePickerKeyword
     } = query;
 
-    logger.debug('0', field,
-    keyword,
-    rangePickerField,
-    rangePickerKeyword)
+    // logger.debug('0', field, keyword, rangePickerField, rangePickerKeyword)
 
     let ret = data;
     if (!_.isNil(field) && !_.isNil(keyword)) {
@@ -59,7 +56,7 @@ module.exports = class Pagination {
       ret = _.sortBy(ret, (t) => {
         return _.get(t, sortField);
       });
-      if(sortOrder.toLowerCase() == 'descend'){
+      if (sortOrder.toLowerCase() == 'descend') {
         ret = _.reverse(ret)
       }
     }
