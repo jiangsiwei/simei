@@ -6,8 +6,8 @@ const dbConst = require("../constants/db.json");
 
 module.exports = class DBConfig {
   static init() {
-    // const URL = (process.env.NODE_ENV === "production") ? process.env.MONGOHQ_URL : dbConst.localhost;
-    const URL = 'mongodb://jiangsiwei:simei123@ds011664.mlab.com:11664/simei'
+    const URL = (process.env.NODE_ENV === "production") ? process.env.MONGOHQ_URL : dbConst.localhost;
+    // const URL = 'mongodb://jiangsiwei:simei123@ds011664.mlab.com:11664/simei'
 
     console.log('DB URL = ', URL);
     mongoose.Promise = Promise;
